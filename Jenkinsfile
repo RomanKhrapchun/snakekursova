@@ -51,12 +51,9 @@ pipeline {
                 '''
             }
         }
-        stage('Upload Output Files to S3') {
-            steps {
-                echo 'Uploading output files to S3...'
-                withAWS(credentials: 'aws-credentials', region: 'eu-north-1') {
-                    s3Upload(bucket: 'jenkins-sonarqube-builds-k1z6vsfz', file: 'output/', path: 'artifacts/output/')
-                }
+        steps {
+            withAWS(credentials: 'aws-credentials', region: 'eu-north-1') {
+                sh 'aws s3 cp --recursive output/ s3://jenkins-sonarqube-builds-k1z6vsfz/artifacts/output/'
             }
         }
     }
