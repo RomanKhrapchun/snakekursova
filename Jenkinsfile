@@ -44,10 +44,10 @@ pipeline {
         stage('Run Container and Collect Output') {
             steps {
                 echo 'Running Docker container to generate output files...'
-                // Якщо програма створює вихідні файли, вкажіть директорію для їх збереження
                 sh '''
                     mkdir -p output
                     docker run --rm -v $(pwd)/output:/app/output $DOCKER_IMAGE_NAME
+                    ls -la output/
                 '''
             }
         }
