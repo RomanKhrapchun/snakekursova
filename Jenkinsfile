@@ -24,8 +24,6 @@ pipeline {
         stage('Test Docker Image') {
             steps {
                 echo 'Running tests in Docker container...'
-                // Тести можуть бути специфічними для проекту. Якщо у вас є окремий скрипт для тестування,
-                // наприклад run_tests.sh, скористайтеся ним. Або тестування може включати запуск програми.
                 sh '''
                     docker run --rm $DOCKER_IMAGE_NAME ./snake --test
                 '''
@@ -44,7 +42,6 @@ pipeline {
         stage('Run Container and Collect Output') {
             steps {
                 echo 'Running Docker container to generate output files...'
-                // Якщо програма створює вихідні файли, вкажіть директорію для їх збереження
                 sh '''
                     mkdir -p output
                     docker run --rm -v $(pwd)/output:/app/output $DOCKER_IMAGE_NAME
