@@ -39,7 +39,7 @@ bool is_game_end()
 
 void game_over()
 {
-    cout << "GAME IS OVER" << endl;
+    cout << "GAME IS Dead" << endl;
 }
 
 void start_game()
